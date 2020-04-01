@@ -1,7 +1,189 @@
 # TIL
 오늘 내가 배운 것들(Today I Learned)
+### [3일차 학습]
 
-### [2일차 학습]
+#### 컨테이너 요소
+
+- 적절한 시맨틱 요소가 없을때만 div, span 사용
+- div
+  - div : division 의 약자
+  - block 컨테이너 (html5 에서는 flow)
+  - block 요소( h1~6, p, blockquote, section )
+
+- span
+  - 인라인 요소( a, strong, em, b, i )
+  - 인라인 요소는 블록요소를 감쌀 수 없다.
+
+
+
+#### 텍스트 레벨 요소
+
+
+- 아래 첨자 : \<sub>  subscript text 
+- 위 첨자 : \<sup>  superscript text ( ex) 각주 )
+- 텍스트 하이라이트 : \<mark>
+- 축약어 : \<abbr> Abbreviation
+- 취소선 : \<s> strikethrough 
+- 시간 /날짜 요소 : \<time> 기계가 이애할 수 잇는 형태로 날짜나 시간을 나타냄
+
+
+#### 그룹핑 요소
+
+- address 
+  - 조직의 정보
+
+```html
+<address>
+  서울특별시 강남구 삼성로 648 SM ENTERTAINMENT
+  Communication Center 대표전화 <a href="tel:+82262409800">02 6240 9800</a>   
+  대표 : 한세민, 남소영 사업자번호 <a href="https://goo.gl/XqFuCC">114 81 63109</a> 
+  <small>Copyright©2013 SM ENTERTAINMENT Co., Ltd. ©All rights reserved.</small>
+</address>
+```
+
+- pre ( preserved 의 약자이며 code 의 경우 \<code> 이용) 
+  - 이메일, 빈줄이 표시된 단락, 아스키코드
+  - 컴퓨터 코드, 출력, 키보드 블록을 나타내기 위해 pre 요소는 code, samp, kbd 요소와 함께 사용 가능
+
+```html
+<pre>
+____  ∧ ∧
+   |＼ /(´～`)＼&lt변화구
+   |　|￣￣￣￣￣|
+   |　|＝みかん＝|
+ ＼|＿＿＿＿＿|
+</pre>
+<pre>
+<p>다음은 패널(Panel) 생성자 함수(Constructor Function) 입니다.</p>
+function Panel(element, canClose, closeHandler) {
+  this.element = element;
+  this.canClose = canClose;
+  this.closeHandler = function () { if (closeHandler) closeHandler() };
+}
+</pre>
+```
+
+
+
+
+#### 임베디드 요소
+
+- embed, object, param 는 자주 사용되지 않음
+
+- picture
+  - source, img 모두 가능하다.
+  - img를 포함하는 컨테이너 요소이며 모던 브라우저에서는 다양한 디바이스에 대응하기 위해 source 요소를 사용가능하다.
+
+```html
+<picture>
+  <source srcset='media/image1~~~' type='image/png' media="(min-width:900px)">
+  <source srcset='media/image2~~~' type='image/png' media="(min-width:600px)">
+  <img src='media/image3~~~' alt='웃는 고양이'>
+</picture>
+```
+
+- video
+  - 속성으로 src, poster, preload, controls, autoplay, loop, muted 존재 
+```html
+<video
+  src='media/video/~~'
+  poster='media/~~.png'
+  controls autoplay loop muted>
+  <p>
+    HTML5 <code>video</code> 요소를 지원하지 않는 구형 웹브라우저를 사용중입니다.
+    <a href='http://outdatedbrowser.com/ko'>최신형 브라우저로 업데이트</a> 하세요.
+  </p>
+</video>
+```
+
+- Audio
+  - control 속성이 없으면 audio control이 기본적으로 보이지 않음.
+  - 아래 코드는 figcaption 내부에 audio태그를 넣고 width를 동일하게 하여 디자인된 화면을 구성 (control의 가로폭이 300px )
+  - https://caniuse.com/#search=mp3 ( 결론적으로 mp3, mp4 를 사용하면 되므로 더이상 내부에 source 를 이용해 다양한 포멧을 사용할 필요 없음.)
+
+```html
+<figure>
+  <img src='media/image/~~~.png alt='비행기' width='300' height='300'>
+  <figcaption>
+    <audio src='media/~~~.mp3' controls>
+      <p>
+        HTML5 <code>video</code> 요소를 지원하지 않는 구형 웹브라우저를 사용중입니다.
+        <a href='http://outdatedbrowser.com/ko'>최신형 브라우저로 업데이트</a>  하세요.
+      </p>
+    </audio>
+  </figcaption>
+</figure>
+```
+
+- track
+  - video, audio 안에서  사용
+  - 다국어도 사용 가능 ( default 가능)
+  - vtt = video text track 웹표준 자막 포멧
+
+```html
+<video src='media/video/~~' controls >
+  <track kind='subtitles' src='~~.ko.vtt' srclang='ko' label='한국어'  default>
+  <track kind='subtitles' src='~~.ko.vtt' srclang='en' label='영어'>
+  <track kind='subtitles' src='~~.ko.vtt' srclang='ja' label='일본어'>
+    
+</video>
+```
+
+- iframe
+  - src             - 프레임 소스 설정
+  - width           - 프레임 너비 설정
+  - height          - 프레임 높이 설정
+  - allowfullscreen - 프레임 전체화면 설정
+  - frameborder='0' - 프레임 테두리 설정
+  - allow - 허용 시켜줄 대상 ( allow="autoplay; encrypted-media" )
+  - 구글 맵, 네이버맵 등 시간이 날때 직접 해봐야겠다.
+
+- map 요소
+  - 이미지 맵 좌표 생성: https://www.image-map.net/
+  - 이미지 맵(클릭 가능한 링크 영역)을 정의하기 위해 \<area>와 함께 사용됨.
+  <img src="products-map.jpg" alt="제품 모음" usemap="#products-map">
+  <map name="products-map">
+    <area
+      shape="circle"
+      coords="200,250,25"
+      hreflang="en-GB"
+      href="another.html"
+      alt="Another Page"
+      target="_blank">
+  </map>
+
+- area 요소
+  - 이미지의 핫스팟 지역 정의, 하이퍼링크 설정. 내부에서만 사용 가능.
+  - shape    - 핫스팟 모양 설정
+  - coords   - 모양의 좌표 값 설정
+  - href     - 하이퍼링크 주소 설정
+  - target   - 새 창(탭) 열림 설정
+  - alt      - 대체 텍스트 설정
+  - hreflang - 연결된 페이지의 언어 속성 설정
+  - download - canvas 데이터 다운로드 설정
+
+
+
+
+#### 질문
+없습니다. 
+
+#### 느낌점
+오늘은 매우 관심있는 주제가 많았다.
+예전의 보안이슈로 iframe 이야기를 많이 들었는데 제대로 다시 공부해봐야겠다.
+동영상 업로드 기능이나 실시간 스트리밍 서비스 관련하여 video 태그를 좀더 살펴보고 싶다. 
+map 요소라는 것이 있는지 처음 알았다. 비슷한 기능을 구현하기 위해 자바스크립트와 div를 이용해서 구현했었는데, 앞으로는 map요소를 사용해야겠다.
+항상 느끼는 canvas에 비해 svg의 가장 큰 장점은 css, javascript를 적용 가능하다는 점이다.
+
+
+
+
+
+
+---
+
+<details>
+<summary> 2일차 학습 </summary>
 
 - href 의 #, #top은 최상단이며 보통 id를 사용 (다만 습관적으로 id 사용에 거부감이 존재)
 
@@ -19,7 +201,7 @@
   https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/
 
 - 설명 
-설명 목록(dl : description List) =  용어(dt : term) + 해당 용어에 설명내용(dd : description)
+  -설명 목록(dl : description List) =  용어(dt : term) + 해당 용어에 설명내용(dd : description)
 태그 속성에 값에 넣는 문자는 entitycode 로 할 필요 없음
 img에 title 속성을 통하여 툴팁 가능
 
@@ -82,9 +264,12 @@ body 안에는 직접적으로 header, footer 요소를 직접적으로 포함 �
 #### 느낌점
 과제가 많이 늦었습니다!
 
----
+</details>
 
-### [1일차 학습]
+---
+<details>
+<summary> 1일차 학습 </summary>
+
 - h : heading 의 약자 
 - p : paragraph 의 약자
 - head 태그안의 title 태그를 이용해 페이지 제목 설정 가능
@@ -140,3 +325,7 @@ https://soye0n.tistory.com/196 (한자 사용 방법, 한글 폰트는 불가능
 나머지 영상도 간단히 살펴보았는데, 내가 모르는 태그나 매우 많았다. 알고 안쓰는 것과 몰라서 안쓰는 것은 큰 차이니 열공!!
 
 항상 영어문서만 봤었는데, mdn한글 문서도 보니 번역이 잘되어 있네, 기계번역이 아닌것 같다.
+
+</details>
+
+---
