@@ -141,16 +141,6 @@ function Panel(element, canClose, closeHandler) {
 - map 요소
   - 이미지 맵 좌표 생성: https://www.image-map.net/
   - 이미지 맵(클릭 가능한 링크 영역)을 정의하기 위해 \<area>와 함께 사용됨.
-  <img src="products-map.jpg" alt="제품 모음" usemap="#products-map">
-  <map name="products-map">
-    <area
-      shape="circle"
-      coords="200,250,25"
-      hreflang="en-GB"
-      href="another.html"
-      alt="Another Page"
-      target="_blank">
-  </map>
 
 - area 요소
   - 이미지의 핫스팟 지역 정의, 하이퍼링크 설정. 내부에서만 사용 가능.
@@ -162,7 +152,18 @@ function Panel(element, canClose, closeHandler) {
   - hreflang - 연결된 페이지의 언어 속성 설정
   - download - canvas 데이터 다운로드 설정
 
-
+```html
+<img src="products-map.jpg" alt="제품 모음" usemap="#products-map">
+<map name="products-map">
+  <area
+    shape="circle"
+    coords="200,250,25"
+    hreflang="en-GB"
+    href="another.html"
+    alt="Another Page"
+    target="_blank">
+</map>
+```
 
 
 #### 질문
