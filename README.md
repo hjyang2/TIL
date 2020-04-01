@@ -170,10 +170,10 @@ function Panel(element, canClose, closeHandler) {
 없습니다. 
 
 #### 느낌점
-오늘은 매우 관심있는 주제가 많았다.
-예전의 보안이슈로 iframe 이야기를 많이 들었는데 제대로 다시 공부해봐야겠다.
+- 오늘은 매우 관심있는 주제가 많았다.
+- 예전의 보안이슈로 iframe 이야기를 많이 들었는데 제대로 다시 공부해봐야겠다.
 동영상 업로드 기능이나 실시간 스트리밍 서비스 관련하여 video 태그를 좀더 살펴보고 싶다. 
-map 요소라는 것이 있는지 처음 알았다. 비슷한 기능을 구현하기 위해 자바스크립트와 div를 이용해서 구현했었는데, 앞으로는 map요소를 사용해야겠다.
+- map 요소라는 것이 있는지 처음 알았다. 비슷한 기능을 구현하기 위해 자바스크립트와 - - div를 이용해서 구현했었는데, 앞으로는 map요소를 사용해야겠다.
 항상 느끼는 canvas에 비해 svg의 가장 큰 장점은 css, javascript를 적용 가능하다는 점이다.
 
 
@@ -214,10 +214,10 @@ img에 title 속성을 통하여 툴팁 가능
  
 
 - 어휘 요소들
-아래 두가지를 구분해야 함 (즉 bold 가 의미적으로 강조가 아니다.)
-1)강조 : sematic
-2)표현적인 목적 : Non sematic
-\<strong\> 중요성, 심각성 , 긴급성
+  - 아래 두가지를 구분해야 함 (즉 bold 가 의미적으로 강조가 아니다.)
+  - 1)강조 : sematic
+  - 2)표현적인 목적 : Non sematic
+  - \<strong\> 중요성, 심각성 , 긴급성
 
 
 - 섹션 메인
@@ -248,14 +248,16 @@ article 내부에 section을 포함할 수도 있고, section 내부에 article�
 사이트 하단에 위치한 링크는 footer요소로도 충분하다. 
 
 - main
-main 요소는 섹션요소가 아니며, main은 반드시 1개만 보여져야 하므로, hidden 속성을 이용해야 한다. 
-\<main> \</main>
-\<main hidden> \</main> 
-<참고>
-article, section, aside, nav 는 main요소를 자식으로 포함할 수 없다. 
-반대로 main요소는 섹션(article, section, aside, nav)요소들을 포함할 수 있다. 
-main 내부에는 header, footer 요소를 직접적으로 포함하지 않는다. (섹션 내부에 footer와, header을 넣는다.)
-body 안에는 직접적으로 header, footer 요소를 직접적으로 포함 가능.
+  - main 요소는 섹션요소가 아니며, main은 반드시 1개만 보여져야 하므로, hidden 속성을 이용해야 한다. 
+```html
+  <main> </main>
+  <main hidden> </main> 
+```
+  - <참고>
+  - article, section, aside, nav 는 main요소를 자식으로 포함할 수 없다. 
+  - 반대로 main요소는 섹션(article, section, aside, nav)요소들을 포함할 수 있다. 
+  - main 내부에는 header, footer 요소를 직접적으로 포함하지 않는다. (섹션 내부에  - footer와, header을 넣는다.)
+  - body 안에는 직접적으로 header, footer 요소를 직접적으로 포함 가능.
 
 
 
@@ -323,9 +325,8 @@ https://soye0n.tistory.com/196 (한자 사용 방법, 한글 폰트는 불가능
 없음
 
 #### 느낌점
-나머지 영상도 간단히 살펴보았는데, 내가 모르는 태그나 매우 많았다. 알고 안쓰는 것과 몰라서 안쓰는 것은 큰 차이니 열공!!
-
-항상 영어문서만 봤었는데, mdn한글 문서도 보니 번역이 잘되어 있네, 기계번역이 아닌것 같다.
+- 나머지 영상도 간단히 살펴보았는데, 내가 모르는 태그나 매우 많았다. 알고 안쓰는 것과 몰라서 안쓰는 것은 큰 차이니 열공!!
+- 항상 영어문서만 봤었는데, mdn한글 문서도 보니 번역이 잘되어 있네, 기계번역이 아닌것 같다.
 
 </details>
 
