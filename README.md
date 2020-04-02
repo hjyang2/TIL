@@ -1,6 +1,309 @@
 # TIL
 오늘 내가 배운 것들(Today I Learned)
-### [3일차 학습]
+
+### [4일차 학습]
+
+#### 테이블 요소
+
+- table은 항상 제목(caption) 을 가진다. ( MDN 사이트을 보니 선택인듯)
+- table, caption, column, th, dh, tr, colspan,
+- 전맹 시각자의 경우 table은 매우 이해하기 어렵기 때문에 구조화를 잘해야 한다.
+- table 의 border 속성은 표현이라 사용이 권장되지 않는다. (가능한 표현은 css을 통해서 해야한다.)
+- 가장 좋은 테이블 디자인은 단순해서 이해하기 쉽게 만드는 것이며 테이블 내 테이블을 중첩해서는 안된다. 
+- 테이블을 레이아웃(배치) 목적으로 사용해서는 안된다. 
+- 테이블 내용이 복잡하여 설명이 필요하다면 아래 두가지 방법 중 하나를 선택 해야한다. 
+  - 1. aria-describedby 속성으로 표에 대한 자세한 설명단락의 id와 연결시킨다.
+    ```html
+    <p id="compare-shoes-table">테이블 내용에 대한 설명 블라블라~</p>
+    <table aria-describedby='compare-shoes-table'>
+      <caption>성인 남성 운동화 사이즈표</caption>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr></tr>
+      <tr></tr>
+    </table>
+    ```
+  - 2. \<figure> 요소에 aria-labelledby 속성을 사용해 제목(caption과 연결시킨다.)
+  
+    ```html
+    <figure aria-labelledby="compare-shoes-table">
+    <p >테이블 내용에 대한 설명 블라블라~</p>
+    <table>
+      <caption id="compare-shoes-table">성인 남성 운동화 사이즈표</caption>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr></tr>
+      <tr></tr>
+    </table>
+    </figure>
+    ```  
+    
+- th 요소
+  - 테이블 셀 제목(header cell in a table)으로 행(tr) 내부에 포함되어야 한다.
+  - 속성
+    - scope: 행(row) 또는 열(col), 행그룹(rowgroup), 열그룹(colgroup)의 제목임을 명시
+    - abbr: 제목이 길어 축약(Abbreviation)이 필요할 때 사용
+    - colspan: 열(column)을 그룹 지을 때 사용
+    - rowspan: 행(row)을 그룹 지을 때 사용 (보통 1행 1열)
+
+- td 요소
+  - 테이블 셀 내용(data cell in a table)으로 행(tr) 내부에 포함되어야 한다.
+  - 속성
+    - colspan: 열(column)을 그룹 지을 때 사용
+    - rowspan: 행(row)을 그룹 지을 때 사용
+    - headers: 셀 제목을 하나 이상 연결하여 읽기 용이하도록 구성할 때 사용, 스크린 리더가 순서대로 읽음.
+    
+- thead 요소
+  - 테이블 행 블록(row block) 내에 제목 열 그룹(column headers)으로 구성할 경우 사용한다. 
+  - 선택적(option)으로 사용한다. (필수 아님)
+
+- tbody 요소
+  - 행 블록 내에 테이블 데이터로 구성할 때 사용한다. 
+  - 선택적(option)으로 사용한다. (필수 아님)
+  - 기본적으로 브라우저가 알아서 묶어만들어주기도 함
+
+- tfoot 요소
+  - 행 블록 내에 열 요약(column summaries)로 구성할 때 사용한다. 
+  - 선택적(option)으로 사용한다. (필수 아님)
+
+- col 요소
+  - 테이블 열(column)을 하나 이상 묶고자 할 때 사용한다.
+  - 일반적으로 colgroup 요소 내부에 포함시킨다.
+  - 선택적(option)으로 사용한다. (필수 아님)
+  - 속성
+    - span: 열 묶음 개수 설정
+
+- colgroup 요소
+  - 테이블 열(column) 그룹을 만들고자 할 때 사용한다.
+  - 내부에 col 요소를 포함하거나, 포함하지 않을 수 있다.
+  - 선택적(option)으로 사용한다. (필수 아님)
+  - 속성
+    - span: colgroup 요소가 col을 포함하지 않을 경우, 열 묶음 개수 설정    
+
+#### form , input , button 등의 폼 요소
+
+```html
+<form action="https://formspree.io/your@email.com" method="POST">
+  <label>이름 <input type='text' name="user_name"  placeholder="이민주" maxlength='4'></label>
+</form>
+``` 
+- name : 서버에 값을 전송할 때 사용됨
+- label 태그의 for 속성 유무
+  - for 속성을 사용하지 않으면 \<label>태그 내부에 \<input> 사용
+  - for 속성을 사용하면 \<label> 과 \<input>을 분리 가능 => 다만 이때에는 반드시 label태그의 for 속성과 input 태그의 id 속성이 동일해야함
+    ```html
+    <form action="https://formspree.io/your@email.com" method="POST">
+      <label for='_user_name'>이름 </label>
+      <input type='text' _id="_user_name" name="user_name"  placeholder="이민주" maxlength='4'>
+    </form>
+    ```
+
+- input
+  - 속성
+    - name
+    - placeholder
+    - value : 실제 값
+    - readonly : 읽기 전용
+    - required : 필수 입력 사항
+    - disabled
+    - minlength
+    - maxlength
+    - list
+  - type
+    - text
+    - password
+    - checkbox
+    - radio : label 로 묶으면 레이블을 클릭해도 선택이 된다. default의 의미로 checked 속성 추가가능하며 반드시 name값이 동일해야 한다.
+    - file : File 전송시에 from 요소의 enctype="multipart-formdata" 을 추가 및 method는 POST 설정.
+    - submit : button 태그를 사용하지 않고 input 태그로 사용. 이때 value 속성으로 text 입력
+    - button 
+    - image : image 타입을 이용해 이미지 버튼을 만들 수 있음.
+    - reset
+    - hidden : 사용자에게 보여지지 않고 데이터 전송
+    - search : x 표시 가능
+    - url : datalist 요소( option 태그도 )를 이용하여 list 속성을 통해 listing 가능
+    ```html
+    <p>
+      <label> 이동할 웹주소<input list="url_ex" type="url" name="user_url" ></label>
+      <datalist>
+        <option value="http://naver1.com"></option>
+        <option value="http://naver2.com"></option>
+        <option value="http://naver3.com"></option>
+        <option value="http://naver4.com"></option>
+      </datalist>
+    </p>
+    ```
+    - tel : 전화번호도 datalist 사용가능
+    - email
+    - date
+    - month
+    - week
+    - time
+    - datetime-local
+    - number : min, max, step(한번 올릴 때 마다 단위), value로 초기값 설정 가능
+    - range : min, max, step(한번 올릴 때 마다 단위), value로 초기값 설정 가능
+    - color : value 을 통해 초기값 설정 가능
+
+- datalist
+  - 데이터 목록 요소 컨테이너 컨트롤.
+  - 내부에 \<option> 요소를 사용해 항목을 만든다.
+
+- button
+  - 버튼 폼 컨트롤로 사용자의 인터랙션을 받아 액션을 트리깅(방아쇠) 처리함.
+  - contents 값으로 "생성 버튼" 이런식으로 넣으면 안됨 => 스크린리더가 버튼태그를 버튼으로 읽으므로 "생성 버튼 버튼" 으로 읽음
+  - type
+    - submit
+    - button : 일반 버튼
+    - reset : 초기화
+    
+  ```html
+  <button type="submit"></button>
+  ```
+
+
+
+- select, option, optgroup
+  - 드롭 다운 메뉴(옵션을 선택 할 수 있는) 컨트롤을 말함. 내부에 \<option> 요소를 포함하여 사용자에게 선택할 수 있도록 한다. \<option>을 묶어 그룹으로 만들고자 한다면 \<optgroup> 요소를 사용하고, label 속성을 사용해 그룹 이름을 설정한다.
+  
+  - select
+  - 속성
+    - name
+    - multiple
+    - disabled
+    - required
+    - size
+
+  - option
+    - \<select>, \<datalist>, \<optgroup> 내부에 포함 가능한 컨트롤로 항목을 만드는데 사용됨.
+    - 속성
+      - value
+      - selected
+      - label
+      - disabled
+      
+  - optgroup
+    - \<option> 컨트를을 그룹지을 때 사용됨.
+    - 속성
+      - disabled
+      - label
+  ```html      
+  <p>
+    <label for="user_hobby">취미</label>
+    <select name="user_hobby" id="user_hobby" required>
+      <option value="0">없음</option>
+      <optgroup label="구기종목">
+        <option value="1" selected>축구</option>
+        <option value="2" label="basketball" disabled>농구</option>
+      </optgroup>
+      <optgroup label="문화생활" disabled>
+        <option value="3">독서</option>
+        <option value="3">영화관람</option>
+      </optgroup>
+    </select>
+  </p>
+  ```
+
+- textarea
+  - 멀티라인 일반 텍스트 편집 컨트롤을 말한다.
+  - type
+    - name
+    - placeholder
+    - rows : 높이
+    - cols : 글자의 개수
+    - readonly
+    - required
+    - disabled
+    - minlength
+    - maxlength
+  - css
+    - resize : none 속성으로 UI 변경할 수 없도록 만듬.
+
+  ```html
+  <div>
+    <label for="user_comments">코멘트</label>
+    <p>
+      <textarea name="user_comments" id="user_comments" cols="24" rows="5">남기고 싶은 말을 작성해주세요<textarea>
+    </p>
+  </div>
+  ```
+
+- fieldset
+  - 하나 이상의 폼 컨트롤을 그룹화 하는데 사용됨.
+  - 속성    
+    - name
+    - disabled
+- legend
+  - \<fieldset> 컨트롤의 레이블(이름)을 설정하는 컨트롤.
+
+  ```html
+  <fieldset name="user_acount">
+    <legend>사용자 계정</legend>
+  </fieldset>
+  ```
+
+- output
+  - 계산된 결과를 출력하는 컨트롤.
+  - 속성
+    - name
+    - for
+      
+  ```html        
+  <form oninput="result_sum.value = parseInt(n1.value + n2.value, 10)">
+    <p>
+      <input type="number" name="n1" value="4"> +
+      <input type="number" name="n2" value="10"> =
+      <output name="result_sum">14</output>
+    </p>
+  </form>
+  ```
+- progress
+  - 작업의 완료 진행 상황을 표시하는데 사용되는 컨트롤.
+  - 속성
+    - value
+    - max
+  
+
+  ```html
+  <progress value="10" max="100">10%</progress> 
+  <!-- 아직 10% 라는 content가 반영 안됨 -->
+  ```
+- meter
+  - 알려진 범위 내에서의 스칼라 측정 또는 분포 비율을 나타내는 컨트롤. (게이지(gauge)라고도 불림)
+      디스크 사용 현황, 쿼리 결과의 관련성, 특정 후보에 대한 투표율 등이 해당됨.
+  - 속성
+    - value
+    - min
+    - max
+    - low
+    - high
+    - optimum
+
+  ```html
+  <meter value="20" min="5" max="40">20</meter>
+  <!-- 아직 20 이라는 content가 반영 안됨 -->
+  ```
+  
+  
+#### 질문
+ 
+#### 느낌점
+
+
+---
+
+
+<details>
+<summary> 3일차 학습</summary>
 
 #### 컨테이너 요소
 
@@ -175,11 +478,7 @@ function Panel(element, canClose, closeHandler) {
 동영상 업로드 기능이나 실시간 스트리밍 서비스 관련하여 video 태그를 좀더 살펴보고 싶다. 
 - map 요소라는 것이 있는지 처음 알았다. 비슷한 기능을 구현하기 위해 자바스크립트와 - - div를 이용해서 구현했었는데, 앞으로는 map요소를 사용해야겠다.
 항상 느끼는 canvas에 비해 svg의 가장 큰 장점은 css, javascript를 적용 가능하다는 점이다.
-
-
-
-
-
+</details>
 
 ---
 
