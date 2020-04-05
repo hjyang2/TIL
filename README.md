@@ -1,7 +1,134 @@
 # TIL
 오늘 내가 배운 것들(Today I Learned)
 
-### [4일차 학습]
+### [5일차 학습]
+
+#### 인터랙티브 요소
+
+- details 요소
+  - ( 각주는 적합하지 않고 \<a>을 이용해 해쉬를 이용해 하단의 id값과 연결 )
+  - open 속성을 사용하면 기본적으로 펼쳐서 사용됨
+  - summary 요소와 함께 사용
+
+- dialog
+  - open 속성을 사용하면 기본적으로 펼쳐서 사용됨
+  
+
+#### 스크립팅 요소들
+
+- type 존재하나 html5에서는 생략 가능
+- src 속성을 이용해 .js 코드를 불러올 수 도 있음.
+- \<style> 태그를 이용해 css코드 작성
+- link 태그를 이용해 css코드도 불러올 수 있음.
+```html
+<link rel="stylesheet" href="css/app/css">
+```
+
+- noscript ( 크롬 디버깅 설정에는 disable javascript 뿐만 아니라 다양한 설정값이 존재 )
+- canvas 
+
+#### 유저 인터랙션 속성
+
+- hidden ( 모든 html 요소에 가능)
+- 기본적으로 포커스 가능한 요소들 (참고: https://allyjs.io/data-tables/focusable.html)
+  - 폼 컨트롤 요소들           : input, button, textarea, select 등
+  - href 속성을 가진 요소들     : a, area
+  - controls 속성을 가진 요소들 : video, audio
+- tabindex 
+  - 1이상 : 탭 포커스 순서를 설정한다.
+  - 0 : 포커스를 가지지 않는 요소에 부여함 ( ex \<div>)
+  - -1 : 포커스를 가진 요소들을 제외함
+
+- accesskey 속성
+  - 모든 HTML 요소는 accesskey 속성을 가질 수있다. 속성 값은 키보드 단축키로 설정된다.
+  - 하지만 accesskey 속성의 단축키는 브라우저와 운영체제 플랫폼에 의존하고 있어 운영체제마다 사용자 경험이 달라진다. 쉽게 말해 Windows 사용자와 Mac OSX 사용자가 사용하는 단축키는 달라진다. (iPhone과 Android 사용자 경험이 다른 것처럼)
+  - [브라우저 × 운영체제 플랫폼]
+  - Windows
+    - Chrome  : Alt + 단축키
+    - IE      : Alt + 단축키
+    - Safari  : Alt + 단축키
+    - Opera   : Alt + 단축키
+    - Firefox : Alt + Shift + 단축키
+  - Mac OSX
+    - Chrome  : Control + Alt + 단축키
+    - Safari  : Control + Alt + 단축키
+    - Opera   : Control + Alt + 단축키
+    - Firefox : Control + 단축키
+  - Linux
+    - Chrome  : Alt + 단축키
+    - Opera   : Alt + 단축키
+    - Firefox : Alt + Shift + 단축키
+
+  [사용 예시]
+  ```html        
+  <button type="button" class="button is-collect" accesskey="C" onclick="collect()"> 수집</button>  
+  ```
+
+
+- draggable 속성
+  - MDN 문서를 보니 draggable 은 Boolean이 아니라 enumerated 이기 때문에 ture, false 를 반드시 적어야 한다고 적혀있다. 열거형 이라는 것이 enum같은 것으로 추정되는데 구체적인 설명이 없어서 암기해야겠다.
+
+#### 문서 메타데이터 요소들
+
+- 문서의 제목과 스타일시트, 스크립트 링크 또는 선언을 포함하는 문서의 일반적인 정보(메타데이터)를 제공한다. 대부분 브라우저는 마크업에서 <head> 요소가 생략될 경우, 자동으로 <head> 요소를 생성하지만 일부는 그렇지 않다.
+
+- 자동으로 <head> 요소를 생성하지 않는 브라우저 환경
+  - Android <= 1.6
+  - iPhone  <= 3.1.3
+  - Opera   <= 9.27
+  - Safari  <= 3.2.1.
+  - Nokia 90
+
+- title : 브라우저의 타이틀 바(Title Bar)나 페이지 탭에 보여지는 문서의 제목을 정의. 텍스트만 포함할 수 있으며 포함된 태그들은 해석되지 않음.
+
+- 속성들을 일일이 설명하지 않고 아래의 예시 코드로 표현함
+  ```html
+  <!DOCTYPE html>
+  <html lang="ko-KR">
+    <head>
+      <meta charset="UTF-8">
+      <title>HTML 메타데이터(Metadata) 요소들</title>
+      <meta name="application name" content="어플리케이션 이름 정의">
+      <!--웹 페이지에서 실행중인 웹 애플리케이션 이름 정의. 
+      간단한 웹 페이지는 application-name 메타를 정의해서는 안됨. -->
+      <meta name="description" content="웹페이지 내용을 요약해서 기술">
+      <meta name="keywords" content="웹페이지의 주요 키워드를 콤마(,) 로 구분하여 작성.">
+      <meta name="author" content="웹페이지 제작자">
+      <meta name="robots" content="index">
+      <meta name="viewport" content="width=device-width,  initial-scale=2">
+    </head>
+    <body>
+    </body>
+  </html>
+  ```
+- \<base> 요소를 이용하여 href 의 base주소를 설정가능하다.
+- \<link> 요소를 이용해 css을 가져올 때 title을 부여하여 스타일을 변경할 수도 있는데 크롬에서는 불가능하다.
+
+
+
+
+  
+#### 질문
+- hidden 속성과 css 의 "display : none" 시각적 효과는 비슷한데 어떤 차이가 있는지 궁금합니다.
+
+
+#### 느낌점
+- meta태그에서 "application-name" 은 간단한 웹 페에지는 적용할 수없다고 하였는데, 여기저기 찾아보니 gmail.com 에 application-name 이 적용되어 있다. 
+
+- \<style>에서 scoped 는 대부분의 브라우저에서 지원되지 않는 기능이라고 설명들었다. 다만 vue.js를 주로 쓰는 나에게는 매우 친숙한 속성값이다.
+
+- details, summary의 경우는 TIL 과제를 하며 다른사람들의 과제를 참고하다가 다른 분들이 일자별로 details 태그를 이용하며 분리하는 것을 보고 따라하며 배웠다.
+
+- 항상 다이얼로그는 div요소를  z-index, display: none, position: absolue 등의 css 와 js를 이용해 만들었는데, \<dialog> 태그가 있었다니 다음에 사용해봐야겠다.
+
+- 논리적인 흐름이 중요하다. markup의 순서 즉 먼저 등장하는 것이 우선시된다. 그러므로 img요소의 tabindex 요소를 0이 아닌 양수로 주는 것은 권장되지 않는다.
+
+- 접근성 관점에서 웹페이지 내 "드래그앤드드롭"을 구현하면 마우스없이 키보드로도 가능하게 해야한다.
+
+---
+
+<details>
+<summary> 4일차 학습</summary>
 
 #### 테이블 요소
 
@@ -299,6 +426,8 @@
 #### 느낌점
 form과 관련된 많은 타입들을 배웠다.
 또한 가장 좋은 테이블 디자인은 단순해서 이해하기 쉬운 디자인이라는 것 ! 그리고 테이블 내 테이블을 중첩해서는 안된다는 말을 기억해야겠다.
+
+</details>
 
 ---
 
