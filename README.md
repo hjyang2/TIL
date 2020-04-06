@@ -1,31 +1,122 @@
 # TIL
 오늘 내가 배운 것들(Today I Learned)
 
---- 
-수정중~~~~
+### [6일차 학습]
 
-#### 가상 요소 선택자(Pseudo Element)
+#### CSS
 
-- :: 2개가 가상 요소
-- 종류
-  - ::first-letter {...}
-  - ::first-line {...}
-  - ::before {...}
-  - ::after {...}
+- 표준화 단계
+    - FPWD	First Public Working Draft
+    - WD	Working Draft
+    - CR	Candidate Recommendation
+    - PR	Proposed Recommendation
+    - REC	Recommendation
+    - SPSD	Superseded Recommendation
+
+#### 기본 문법
+
+- 구성 : 대상 선택자, 속성, 값, 
+- 적용 방식
+
+    1. Internal Style  : html 코드에 직접 작성하는 방식으로 body가 아니라 head 태그에 넣어야 한다. 또한 MIME type은 생략 가능
+    2. Inline Style : 요소 내부에 인라인 형태로 작성
+    3. External Style link 요소로 사용
+    ```html
+    <link href="css/style.css" type="text/css" rel="stylesheet"/>
+    ```
+#### 선택자
+
+- 심플 선택자 
+    - 종류 : element type selector, Grouping selector, Universal selector, class selector(단락요소), multi class selector, id selector,  descendant selector
+
+- Attrivute Selector (속성 선택자)
+    - img[alt*="css"] 
+    ```html
+    <abbr alt="htmlcssjavascript" src="love.jpg" >
+    ```
+
+    - [shape][title] 
+    ```html
+    <area shape="" coords="" href="" title="">
+    ```
+
+    - 아래는 모두 태그는 관계 없이 작동 ( 정규표현식과 비슷하게 작동)
+    ```css
+    [href^="http://"] { ... }
+    [src$=".svg"]     { ... }
+    [src*="phone"]    { ... }
+    ```
+
+- 가상 클래스
+
+    - :link         { ... }
+    - :visited      { ... } 
+
+    - :hover        { ... }
+    - :active       { ... } : 선택시 작동
+
+    - :focus        { ... } : 키보드 속성
+    - :focus:hover  { ... }
+    - :focus:active { ... }
+
+    - :first-child  { ... }
+    - :last-child   { ... }
+    - :nth-child(n) { ... } : even, odd 사용 가능, n은 1이 아니라 10터 시작됨.
+    https://developer.mozilla.org/ko/docs/Web/CSS/:nth-child
+    - :lang(ko)     { ... } : 보통 font 변경시 사용
+
+- 가상 요소 선택자(Pseudo Element)
+  - :: 2개가 가상 요소
+  - 종류
+    - ::first-letter {...}
+    - ::first-line {...}
+    - ::before {...}
+    - ::after {...}
   
+#### 정리사항
+- 네트워크 탭으로 css 불러왔는지 확인하고 파일 이름이 붉은색이면 이상 상태
+- user agent stylesheet 는 웹브라우저가 기본적으로 제공하는 것
+- abbr 태그를 사용하고 그때 title 속성으로 툴팁을 사용
+- class 의 경우 속성 선택자를 사용하면 정확히 일치되지 않거나, 순서가 바뀐경우 인식을 못한다. 항상 class 선택자를 사용하자. 
+
+    ```html
+    <p class='note box'></p> <!-- 불일치 -->
+    [class="note"] {...} 
+    <p class='box note'></p> <!-- 불일치 -->
+    [class="note box"] {...}
+    ```
+- html 과 다르게 css는 대소문자 구분
+- parent:nth-child(n) : 부모의 n번째 자식이라는 의미
+- element:nth-of-type(n) : 같은 유형(element)의 n번째 형제라는 의미
+ 
   
 #### 질문
 
-- before/ after이용해서 꾸미기 ???
+- 개인적으로 before/ after 이용해서 원이나 삼각형을 문장 앞에 사용하곤 했었는데, 실제로 권장되는 건지 궁금합니다.
+  ```css
+  .p-tag::before{
+     content: '';
+     display: inline-block;
+     width: 15px;
+     height: 15px;
+     -moz-border-radius: 7.5px;
+     -webkit-border-radius: 7.5px;
+     border-radius: 7.5px;
+     background-color: black;
+  }
+  ```
 
-
+- SCSS를 배워서 실무에 적용하려고 하는데, 강사님은 Less 나 SCSS를 사용하시는지 궁금합니다.
 
 #### 느낌점
 - pseudo : 논문에서 자주 보이지만 가볍게 넘어갔던 용어인데, p가 묵음이라 "수도 코드", "의사 코드" 라고 사용되는 듯.
+- "가상 요소"와 "가상 클래스"를 구분없이 가상클래스라고 부르고 있었는데 확실히 구분해야겠다. ( :은 가상 클래스, ::가상요소)
 
 ---
 
-### [5일차 학습]
+
+<details>
+<summary> 5일차 학습</summary>
 
 #### 인터랙티브 요소
 
@@ -149,6 +240,7 @@
 
 - 접근성 관점에서 웹페이지 내 "드래그앤드드롭"을 구현하면 마우스없이 키보드로도 가능하게 해야한다.
 
+</details>
 ---
 
 <details>
