@@ -1,7 +1,92 @@
 # TIL
 오늘 내가 배운 것들(Today I Learned)
 
-### [6일차 학습]
+### [7일차 학습]
+
+#### 상속
+
+- 상속 되는 속성(글자색, 글자 디자인에 관련된 것)
+    - color, font-size , font-family, letter-spacing, strong
+
+- 상속되지 않는 속성(공간에 관련된 것)
+    - outline, margin, border, padding
+
+#### 우선적용 규칙
+- 요소 선택자(0,0,0,1) < 클래스 선택자(0,0,1,0) < ID 선택자(0,1,0,0) < 인라인 스타일(1,0,0,0) 
+- *, >, +, ~ 등의 콤비네이터와 :not() 가상클래스는 특성에영향을 주지 않는다.
+- 아래는 예시(한번씩 눈으로 확인해보자)
+    - \* ---- 0000
+    - a ---- 0001
+    - a.link ---- 0011
+    - li:nth-child(2) a:hover ---- 0022
+    - .nav:nth-child(2) a:hover ---- 0031
+    - #outer a ---- 0101
+    - #outer #inner a ---- 0201
+    - style="color: tan" ---- 1000
+- Q : class 속성 개수가 11개면 id 속성 보다 우선할까요? 
+    - A : class 속성 값의 개수가 아무리 많아도 id 속성 보다 중요성이 떨어짐.
+    - Importance
+    - Specificity
+    - Source order
+
+- Typography
+    - 폰트에 영향을 주는 속성
+        - font-family, font-size, font-weight, font-style, color
+        - color 를 표현하는 방법 : color keyword, hex color, rgb color, hsl(180,50%,60%, 1)
+    
+    - 웹 안전 폰트
+        - Arial 고딕(sans-serif)
+        - Verdana 고딕(sans-serif)
+        - Courier New 코드체(공간이 동일)(monospace)
+        - Georgia 명조체(serif)
+        - Times New Roman 명조체(serif)
+        - Trebuchet MS 명조체(serif)
+
+    - 저작권 없는 폰트 
+        - fonts.google.com
+
+    - text 레이아웃 속성
+
+        - line-height 행간 (기본값 : 1.25)
+        - letter-spacing 자간 ( 기본값은 : 0)
+        - word-spacing 어간 : 단어사이 간격
+        - text-align 
+        - text-indent 들여쓰기 
+        - text-transform : uppercase,  lowercase
+        - font-variant: small-caps(대문자는 큰 대문자, 소문자는 작은 대문자), all-small-caps(모두 작은 대문자로 변경) ( 한글은 당연히 적용 안됨)
+        - text-decoration : underline overline line-through(\<s>\</s>)
+        
+
+        - white-space : nomal -> 기본값
+        - white-space : pre -> 입력한 그대로
+        - white-space : pre-line -> 들여쓰기만 제거
+        - white-space : norwap -> 한줄로 길게 쓰임( 줄바꿈 문자를 인식 안 하는듯?)
+        
+        - word-break : 단어의 분리를 어떻게 할 것인지 결정
+        - word-wrap : 박스의 가로 영역을 넘친 단어 내에서 임의의 분리 여부를 결정하여 불바꿈 관여
+        
+        - text-shadow : 4px 4px 0px #9bdbde (x, y, blur, spread, color) ( 멀티도 가능함)
+
+#### 정리사항
+- !important 가능하면 사용하지 말자.
+- 가상 클래스도 클래스이므로 우선적용 규칙에서 "10 point" 적용.
+- woff = web open font format 
+- line-height 은 가능한 1.5 이상
+- 자간보단 어간이, 어간보단 행간이 커야한다.
+
+#### 질문
+- 개발을 하다보면 "고객측이 브라우저 확대/축소도 고려해야 하지 않느냐?"고 이야기 할 때가 있습니다. (반응형이 아니라 ctrl 누른 상태에서 마우스 스크롤로 변경하는 브라우저 확대/축소 입니다.)
+- 질문 1 : 보통 확대 / 축소에서 문제가 되는 부분은 축소이고, 이때 어디까지 고려하는지 궁금합니다. ex) 90, 80, 75, 67, 50% ..
+- 질문 2 : 관련 문제를 해결하면서 저는 이제 font는 rem 단위로 padding, margin 등의 font크기에 영향받는 부분은 em 단위로, line-height 는 1.2같은 비율로 적용하라고 합니다. 혹시 이와같은 방법이 맞는 해결인지 궁금합니다. 아니라면 어떤 부분을 고려해야하는지 궁금합니다.
+
+
+#### 느낌점
+- 크롬 개발자 도구에서 불투명한 css는 상속받은 것이 아니다. (체크가 되어 있어도 적용된 것이 아니다.)
+
+---
+
+<details>
+<summary> 6일차 학습</summary>
 
 #### CSS
 
@@ -111,6 +196,8 @@
 #### 느낌점
 - pseudo : 논문에서 자주 보이지만 가볍게 넘어갔던 용어인데, p가 묵음이라 "수도 코드", "의사 코드" 라고 사용되는 듯.
 - "가상 요소"와 "가상 클래스"를 구분없이 가상클래스라고 부르고 있었는데 확실히 구분해야겠다. ( :은 가상 클래스, ::가상요소)
+
+</details>
 
 ---
 
@@ -241,6 +328,7 @@
 - 접근성 관점에서 웹페이지 내 "드래그앤드드롭"을 구현하면 마우스없이 키보드로도 가능하게 해야한다.
 
 </details>
+
 ---
 
 <details>
