@@ -1,7 +1,166 @@
 # TIL
 오늘 내가 배운 것들(Today I Learned)
 
-### [7일차 학습]
+### [11일차 학습]
+
+
+#### 2D 트랜스폼(Transform)
+
+  - 회전 : rotateX(angle), rotateY(angle), rotate(angle) 
+    - 회전 축은 transform-origin (default: 50% 50%) 속성으로 변경가능
+  - 크기 : scaleX(), scaleY(), scale(x, y)
+  - 이동 : translateX(), translateY(), translate(x, y)
+  - 비틈 : skewX(), skewY(), skew(x, y)
+
+#### CSS 트렌지션
+  - transition-property        트랜지션 속성 : all 이라는 값 가능
+  - transition-duration        트랜지션 시간
+  - transition-timing-function 트랜지션 타이밍 함수
+  - transition-delay           트랜지션 지연시간
+  - transition                 트랜지션 속기형 ( 가능하면 속기형이 알아보기 쉽다.)
+  
+  - timing-function 값은 정해진 값만 사용 가능 
+    - 정해진 값 : linear, ease, ease-in, ease-out, ease-in-out
+    - 더욱 사양한 곡선을 사용하기 위해선 cubic-bezier 값을 사용해야 함 ( https://matthewlein.com/tools/ceaser )
+
+  - webkit : 크롬, 사파리, 오페라 
+  - moz : 파이어폭스
+
+#### 애니메이션(Animation)
+  - animation-name             애니메이션 이름
+    - 여러 name 속성을 각 class에 매칭시켜 class를 바꿔주면 다른 애니메니션을 동작하게 만들 수 있다.
+  - animation-duration         애니메이션 시간
+  - animation-timing-function  애니메이션 타이밍 함수
+  - animation-delay            애니메이션 지연시간 ( 단위는 s, ms 가능)
+  - animation-direction        애니메이션 종료 후, 진행 (순/역)방향 : normal / reverse / alternate /alternate-reverse  가능
+  - animation-iteration-count  애니메이션 반복 횟수 (infinite: 무한반복)
+  - animation-play-state       애니메이션 재생/일시정지 설정 ( paused : 일시정지, running : 재생)
+  - animation-fill-mode        애니메이션 시작 전/종료 후 키프레임 설정 (forwards: 유지, default 값은 none임) 
+  - animation                  애니메이션 속기형
+ 
+#### CSS 3D 트랜스폼(Transforms)
+  - transform-origin
+  - backface-visibility 
+
+  - rotateX()
+  - rotateY()
+  - rotateZ()
+  - rotate3d()
+
+  - translateX()
+  - translateY()
+  - translateZ()
+  - translate3d()
+
+  - scaleX()
+  - scaleY()
+  - scaleZ()
+  - scale3d()
+
+  - skewX()
+  - skewY()
+  - skew()
+ 
+- 자식 요소를 3D 처리할 부모 요소에 설정
+  - perspective : 원근
+  - perspective-origin
+  - transform-style: preserve-3d (요소의 자식이 3D 공간에 배치)  
+
+#### 정리사항
+- 가상 클래스도 클래스이기 때문에 10 point이며 선택자 경합을 고려해야 한다.
+- transform 속성의 경우, background 처럼 일부 속성을 바꿀수 없으므로 덮어쓰기를 한다면 모든 속성을 다시 적어주고 변경할 속성만 바꿔야 한다.
+- 여러 애니메이션의 animation-name 속성을 각 class에 매칭시켜 class를 바꿔주면 다른 애니메니션을 동작하게 만들 수 있다.
+- css로 가능하다면 javascript를 사용하지 않고 css를 사용하자.
+
+#### 질문
+없음
+
+<details>
+<summary> 오프라인 1일차 학습</summary>
+
+### html5 등장
+- content 모델이라는 개념이 등장
+  - ul 태그 밑에는 li 태그만 속함
+- outline 알고리즘이 이전에는 '암묵적'으로 사용되다가 명시적으로 도입됨
+  - 암묵적인 div 태그를 이용하다가, section 태그 이용
+
+### CSS
+-  css 에서 가중 중요한 3가지는 상속, 겹침, 우선순위이다. (겹침이 심해지면 성능이슈가 발생함)
+- !important 의 경우 동적인 스타일을 부여하는 경우에만 예외적으로 사용해야함
+
+### 정리
+
+- acronym ( 두문자어 ) 태그는 현재 사용되지 않음
+- CSS3, CSS4, HTML5 등의 의미는 사실상 마케팅 용어이며 CSS는 현재 모듈단위로 구성되어 버전업데이트 중
+- css3test.com 로 현재 사용하고 있는 브라우저의 CSS3 지원률을 파악가능
+- header.appHeader 의 형식은 react에서 사용되고 있는 클래스 형식임
+
+- header 와 nav 는 분리하여도 되고, header 안에 nav를 속하게 해도 되나 분리하는 편이 좋음.
+- WAI-ARIA 를 간단히 공부하였으며, role 속성을 부여하여 달성함
+  - header : banner
+  - nav : navigation
+  - main : main
+  - footer : contentinfo
+
+- 항상 디자인 순서가 마크업 순서가 아니다. 마크업 순서는 논리적인 순서로 진행되어야 함.
+  - 예로 들어 회원가입 페이지
+  - 디자인 순서 : 아이디 -> 패스워드 -> 로그인버튼 로그인  ->  상태 유지
+  - 논리적인 순서 : 아이디 -> 패스워드 -> 로그인 상태 유지 -> 로그인버튼
+
+- CSS 클래스 네이밍은 BEM 방식을 이용한다. ( Camel Case  )
+  - 클래스__속성--인터렉션
+
+- 전역 속성 
+  - lang, class, id, title, style, data-??
+- 모바일을 우선하여 디자인 하는 것이 좋다. (mobile First)
+
+
+
+</details>
+
+---
+
+<details>
+<summary> 8일차 학습</summary>
+
+#### 박스모델
+
+- css 의 display 속성으로 지정
+- Block : Flow Contents
+  - 너비, 높이 지정 가능
+  - BOX 종류
+    - margin-box   --  외부 공간 박스
+    - border-box   --  테두리 공간 박스
+    - padding-box  --  내부 공간 박스
+    - content-box  --  콘텐츠 공간 박스
+    - positon-box 도 존재
+
+- Inline : Phasing Contents
+  - 너비, 높이 지정 불가능
+
+- Inline-block 존재
+
+
+
+
+#### 정리사항
+- content, padding, border 모두 색상 적용 가능
+- margin 만 음수 설정 가능
+- inline box는 좌-우 의 경우 padding, margin은 설정 가능하나, 상하는 불가능(엄밀하게 이야기하면 공간은 설정이 되나 해당 공간이 벌어지지 않는다!)
+
+
+#### 질문
+- 블렌디드 러닝 연관 과정에 보면 이번주 토요일(4.11) 오프라인 강의 일정이 있는데,  일정대로 오프라인 수업 진행하는건지 궁금합니다!
+
+
+#### 느낌점
+
+</details>
+
+---
+
+<details>
+<summary> 7일차 학습</summary>
 
 #### 상속
 
@@ -82,6 +241,8 @@
 
 #### 느낌점
 - 크롬 개발자 도구에서 불투명한 css는 상속받은 것이 아니다. (체크가 되어 있어도 적용된 것이 아니다.)
+
+</details>
 
 ---
 
