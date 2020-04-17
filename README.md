@@ -4,6 +4,7 @@
 <details>
 <summary> 15일차 학습</summary>
 
+# 15일차 과제 진행중
 
 #### 그리드 레이아웃
 
@@ -154,6 +155,7 @@
 <details>
 <summary> 12일차 학습</summary>
 
+# 12일차 과제 진행중
 
 #### 그레디언트
 
@@ -295,6 +297,8 @@
 <details>
 <summary> 8일차 학습</summary>
 
+# 8일차 아직 진행중
+
 #### 박스모델
 
 - css 의 display 속성으로 지정
@@ -315,16 +319,16 @@
 
 
 
-#### 정리사항
+#### 정리사항 / 느낌점
 - content, padding, border 모두 색상 적용 가능
 - margin 만 음수 설정 가능
 - inline box는 좌-우 의 경우 padding, margin은 설정 가능하나, 상하는 불가능(엄밀하게 이야기하면 공간은 설정이 되나 해당 공간이 벌어지지 않는다!)
 
-
 #### 질문
 없음
 
-#### 느낌점
+#### 
+
 
 </details>
 
