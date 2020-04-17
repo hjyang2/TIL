@@ -1,7 +1,175 @@
 # TIL
 오늘 내가 배운 것들(Today I Learned)
 
-### [11일차 학습]
+<details>
+<summary> 15일차 학습</summary>
+
+
+#### 그리드 레이아웃
+
+- 라인기반 위치 설정
+  - grid-column-start / grid-column-end / grid-row-start / grid-crow-end
+  - grid-column / grid-row / 
+    - ex) grid-column: 2/4
+    - grid-area ( 속기형 )
+    - 마지막의 경우는 음수값을 사용하는 것도 가능
+  - grid span 형식 사용 가능
+    - ex) grid-column: 3 / span 2;
+    - ex) grid-row: span 2 / 4;
+  - grid-template-areas : 매우 편하다.
+
+
+
+#### 정리사항 / 느낌점
+- grid-auto-columns/ grid-auto-rows 는 속기형이 없음
+- grid-order의 경우에는 순서를 변경해도 접근성에 문제가 발생하지 않는 경우에만 사용해야 한다.
+
+#### 질문
+없음
+
+</details>
+
+---
+
+<details>
+<summary> 14일차 학습</summary>
+
+
+#### 그리드 레이아웃
+
+- CSS 레이아웃의 역사
+  1. 테이블 기반 레이아웃
+  2. 프레임 기반 레이아웃
+  3. 플로트, 포지션 기반 레이아웃
+  4. 플랙스 박스 레이아웃( 한 축으로만 설정 가능한 자유도가 낮은 레이아웃 방법, 1차원 )
+  5. HTML 마크업 순서와 무관하게 내부에 포함된 자식 아이템을 그리드 내부에 위치시킬 수 있음(2차원) 
+
+- 용어
+  - grid container / grid cell
+  - grid line
+  - grid track 
+  - grid cell : 가장 작은 단위
+  - grid area
+  - grid gutters ( grid-gap 속성으로 제어 )
+
+- display 
+  - grid / inline-grid 가 존재
+
+- grid-template-rows, grid-template-columns
+  - 공백으로 구분 !
+  - 사용가능한 단위 : px, rem, em, %, fr
+  - 부모 ( grid-containers ) 에게 적용 가능
+  - fr은 비율단위임 ( 그리드 컨테이너 여유공간의 비율이며 calc() 함수를 이용할 수 없다. )
+
+- grid-gap
+  - % 를 이용할 경우에는 부모의 크기가 이나라 콘덴츠 영역에 상대적으로 설정됨
+
+- repeat 
+  - grid-template-rows, grid-template-columns 에 사용
+  - repeat( 반복횟수(양수), 그리드 트랙 리스트(배열, 공백으로 구분) )
+  - 예시 : grid-template-rows : repeat(3, 1fr 2fr);
+
+- minmax
+  - minmax(최소값, 최대값)
+ - 예시1 : grid-template-rows : repeat(3, minmax(20px, auto));
+ - 예시2 : grid-template-rows : minmax(30px, auto) repeat(3,1fr );
+
+ - 암시적 row/ column 자동 행/열 길이 설정
+  - grid-auto-rows, grid-auto-columns
+  - min-content : 최소 컨텐츠를 기준으로 설정
+  - fit-content(argument) 사용 가능
+  
+
+
+#### 정리사항 / 느낌점
+- 그리드는 candidate recommendation 상태임.
+-  그리드 표준 / 비표준 속성을 호환을 위해 autoprefixer 플러그인이 존재함
+- float, clear, column, vertical-align 속성은 컨테이너 요소에 적용되지 않음.
+- grid 를 사용할때는 firefox 를 이용하자 (디버깅이 쉬움)
+- flex 에 마찬가지로 자손이 아니라 직계 자식에게만 적용
+
+#### 질문
+없음
+
+</details>
+
+---
+
+<details>
+<summary> 13일차 학습</summary>
+
+
+#### 플렉시블 레이아웃
+
+- flex-items 과 flex-container를 구분해야 한다.
+- main-axis(주축) 과 cross-axis(교차축)를 구분해야 한다.
+  - flex-start, center, flex-end
+- flex-direction 에 따라 주축 / 교차축이 달라진다.
+  - row, row-reverse, column, column-reverse (float로는 쉽게 구현할 수 없음 )
+- 직속 자식에게만 flex-items 설정됨.
+- justify-content : 주축 정렬 
+  - flex-start
+  - center
+  - flex-end
+  - space-between
+  - space-around
+  - space-evenly : 공백이 정확히 일치됨 !
+
+- align-content : 교차축 정렬 
+  - flex-start
+  - center
+  - flex-end
+  - space-between
+  - space-around
+  - stretch : 잡아 당겨 전체를 채우는 방법 ( flex-items 높이를 주지 않은 경우)
+- flex-wrap : wrap, nowrap ( 부모의 폭이 자식의 합보다 큰 경우에는 의미 없음)
+  - default : nowrap
+- flex-shrink : 기본값이 1 이므로 폭에 상관없이 부모컨테이너에 맞춰서 자동으로 줄어듬 ( nowrap 이 기본값)
+  - default : 1
+- flex-grow : 기본값이 0 이므로  자동으로 늘어나진 않음
+  - default : 0
+
+- flex-basis : width 속성 대신에 사용하며, 단위는 % (전체는 100%가 아니고 %의 합인 것 같음, fr의 느낌과 비슷)
+  - default : auto
+  - auto 값을 가지지 않은 flex-basis와 width(flex-direction: column인 경우 height) 값을 동시에 적용한 경우 flex-basis가 우선합니다.
+
+- order : 속성값을 이용하여 배치 순서를 변경하며 음수도 설정 가능
+- align-self : 교차축에 대한 정렬을 자기 자신에게만 사용
+
+
+
+#### 정리사항 / 느낌점
+- flex-shrink 와 flex-grow 를 한번 더 공부 필요.
+- flex-items 에 다시 display: flex 속성을 부여하여 각 아이템들의 상하, 좌우를 사용함.
+- 가독성을 위해 단축 속성인 flex-flow, flex 를 이용하자
+- align-self 사용해보자
+
+#### 질문
+없음
+
+</details>
+
+---
+
+<details>
+<summary> 12일차 학습</summary>
+
+
+#### 그레디언트
+
+ 
+
+#### 정리사항
+
+
+#### 질문
+없음
+
+</details>
+
+---
+<details>
+<summary> 11일차 학습</summary>
 
 
 #### 2D 트랜스폼(Transform)
@@ -74,6 +242,10 @@
 
 #### 질문
 없음
+
+</details>
+
+---
 
 <details>
 <summary> 오프라인 1일차 학습</summary>
@@ -150,8 +322,7 @@
 
 
 #### 질문
-- 블렌디드 러닝 연관 과정에 보면 이번주 토요일(4.11) 오프라인 강의 일정이 있는데,  일정대로 오프라인 수업 진행하는건지 궁금합니다!
-
+없음
 
 #### 느낌점
 
