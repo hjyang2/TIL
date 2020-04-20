@@ -1,6 +1,37 @@
 # TIL
 오늘 내가 배운 것들(Today I Learned)
 
+
+<details>
+<summary> 오프라인 2일차</summary>
+
+- HTML이 중요하고 CSS는 꾸미는 영역!
+- Content block은 반드시 제목이 필요
+- 순서의 의미가 포함되는 태그는 3가지 ( ul, ol, dl)
+- img파일을 가능한 적게 쓰기 위해 최대한 svg와 text를 사용하자.
+- ul, ol 태그 안에는 li 태그만 허용
+- 상속은 우선순위 개념이 아니다. 
+- position : absolute 는 static 이 아닌 것을 기준으로 한다.
+- img에서 하단에 약간의 공백이 생기는 문제
+
+
+
+
+#### 정리사항 / 느낌점
+
+
+#### 질문
+없음
+
+</details>
+
+
+
+
+
+
+
+
 <details>
 <summary> 15일차 학습</summary>
 
